@@ -1,5 +1,5 @@
 #!/bin/bash
-app="${1}"
+export app="${1}"
 
 function sendMusicStatus() {
 	title=$(rhythmbox-client --print-playing)
@@ -25,6 +25,9 @@ function sendMusicStatus() {
 
 	if [ "${app}" == "algia" ]; then
 		algia event --kind 30315 --content "♫ $title ($length seconds)" --tag d=music --tag expiration="$expiration" --tag r="spotify:search:$title_enc"
+	elif [ "${app}" == "nostk" ]; then
+		nostk pubRaw "{ \"kind\":30315, \"content\":\"♫ $title\", \"tags\": [ [\"d\",\"music\"], [\"expiration\",\"$expiration\"], [\"r\", \"spotify:search:$title_enc\"] ] }"
+
 	fi
 }
 
