@@ -24,9 +24,9 @@ function sendMusicStatus() {
 	expiration=$(date -d "+${length_sec} seconds" +%s)
 
 	if [ "${app}" == "algia" ]; then
-		algia event --kind 30315 --content "♫ $title" --tag d=music --tag expiration="$expiration" --tag r="spotify:search:$title_enc"
+		algia event --kind 30315 --content "$title" --tag d=music --tag expiration="$expiration" --tag r="https://open.spotify.com/search/$title_enc"
 	elif [ "${app}" == "nostk" ]; then
-		nostk pubRaw "{ \"kind\":30315, \"content\":\"♫ $title\", \"tags\": [ [\"d\",\"music\"], [\"expiration\",\"$expiration\"], [\"r\", \"spotify:search:$title_enc\"] ] }"
+		nostk pubRaw "{ \"kind\":30315, \"content\":\"$title\", \"tags\": [ [\"d\",\"music\"], [\"expiration\",\"$expiration\"], [\"r\", \"https://open.spotify.com/search/$title_enc\"] ] }"
 
 	fi
 }
