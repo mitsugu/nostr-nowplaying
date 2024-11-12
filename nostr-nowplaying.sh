@@ -2,7 +2,7 @@
 export app="${1}"
 
 function sendMusicStatus() {
-	title=$(rhythmbox-client --print-playing)
+	title=$(flatpak run --command=rhythmbox-client org.gnome.Rhythmbox3 --print-playing)
 	if [ "$title" == " - " ]; then
 		return
 	fi
